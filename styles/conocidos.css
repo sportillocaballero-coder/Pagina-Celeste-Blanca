@@ -1,0 +1,58 @@
+
+/* ESTILOS PARA LA SECCIÓN "METEORITOS CONOCIDOS"                 */
+
+/* 
+ * Este archivo contiene los estilos para mostrar la información histórica
+ * de meteoritos famosos. Incluye:
+ * - Diseño de tarjetas para cada meteorito histórico
+ * - Layout de dos columnas (modelo 3D + información)
+ * - Estilos para títulos y datos científicos
+ * - Adaptación responsive para dispositivos móviles
+ */
+
+/* Contenedor principal de cada meteorito histórico */
+.meteorite-section {
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  border-bottom: 1px solid #222;
+  padding-bottom: 3rem;
+}
+
+/* Título de cada meteorito (ej: Chelyabinsk, Tunguska) */
+.meteorite-section h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #1e90ff;
+  text-transform: uppercase;
+}
+
+/* Layout de dos columnas para modelo 3D e información */
+.meteorite-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Contenedor del modelo 3D (lado izquierdo) */
+.model-container {
+  flex: 1 1 45%;
+  min-height: 300px;
+  background-color: #000;
+  border: 1px solid #333;
+  border-radius: 12px;
+}
+
+/* Contenedor de datos científicos (lado derecho) */
+.data-container {
+  flex: 1 1 45%;
+  background-color: #111;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+/* Estilo de párrafos dentro del contenedor de datos */
+.data-container p { line-height: 1.6; margin: 0.4rem 0; }
+

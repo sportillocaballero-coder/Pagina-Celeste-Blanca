@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <!-- Basic page configuration -->
-  <meta charset="        <p>
-          <strong>Email:</strong> 
-          <a href="mailto:celesteyblancespace@gmail.com">celesteyblancespace@gmail.com</a>
-        </p>8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="GameCard - Educational game about asteroids and meteorites from ARMET Project">
   <meta name="keywords" content="game, educational, asteroids, meteorites, quiz, space">
@@ -18,21 +15,29 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/gamecard.css">
   <link rel="stylesheet" href="styles/calendar.css">
+  <link rel="stylesheet" href="styles/mobile.css">
 </head>
 
 <body>
   
   <!-- HEADER -->
   
-  <header class="site-header" role="banner">
+  <header class="site-header header" role="banner">
     <!-- Logo and project name -->
-    <div class="logo-container">
+    <div class="logo-container nav-container">
       <img src="assets/images/logo-CyB.png" alt="Celeste y Blanca Space Logo" class="logo">
       <h1 class="site-title">CELESTE & BLANCA SPACE</h1>
+
+      <!-- Add hamburger menu -->
+      <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
     <!-- Main navigation menu -->
-    <nav class="navbar" role="navigation" aria-label="Main menu">
+    <nav class="navbar nav-menu" role="navigation" aria-label="Main menu">
       <a href="index.html" aria-label="Go to main page">Home</a>
       <a href="index.html#proximos" aria-label="View approaching meteorites">Upcoming Meteorites</a>
       <a href="index.html#conocidos" aria-label="View famous meteorites from history">Known Meteorites</a>
@@ -184,5 +189,6 @@
    <!-- For language -->
   <script src="scripts/langs/langcalendar.js"></script>
   <script src="scripts/langs/langgamecard.js" defer></script>
+  <script src="scripts/mobile.js"></script>
 </body>
 </html>

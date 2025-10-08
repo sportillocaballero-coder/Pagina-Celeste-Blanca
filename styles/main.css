@@ -23,6 +23,7 @@ body {
 /* Configuración del elemento*/
 html {
   scroll-behavior: smooth;     
+  scroll-padding-top: 140px; /* Aumentar espacio para compensar el header fijo */
 }
 
 /* Contenedor princip */
@@ -122,7 +123,8 @@ main {
 /* Títulos de sección */
 .section-title { 
   font-size: clamp(1.5rem, 2.2vw, 2.25rem); /* Tamaño responsive subtitulos */
-  margin-top: 2rem;            
+  margin-top: 3rem; /* Aumentar margen superior */
+  margin-bottom: 1rem; /* Agregar margen inferior */
 }
 
 /* Texto destacado (lead paragraph) */
@@ -130,7 +132,9 @@ main {
   font-size: 1.1rem;           
   line-height: 1.7;            
   color: #eaeaea;              
-  max-width: 72ch;            
+  max-width: 72ch;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* Párrafos normales */
@@ -185,8 +189,8 @@ section {
   min-height: 100vh;           
   display: flex;             
   flex-direction: column;      
-  justify-content: center;     /* Centra contenido vertical */
-  padding: 4rem 0;            
+  justify-content: flex-start; /* Cambiar a flex-start para mejor control */
+  padding: 8rem 0 4rem;       /* Aumentar padding superior a 8rem */
   border-bottom: 1px solid #111; 
 }
 
@@ -202,7 +206,8 @@ section:nth-of-type(even) {
 
 /* Sección hero con espacio extra arriba */
 .hero-section { 
-  padding-top: 8rem;           /* Espacio extra para compensar header fijo */
+  padding-top: 10rem;          /* Aumentar espacio extra para compensar header fijo */
+  justify-content: center;     /* Mantener centrado para secciones hero */
 }
 
 /* SELECTOR DE IDIOMAS *
@@ -441,4 +446,64 @@ section:nth-of-type(even) {
 .audio-control:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Enhanced Known Meteorites Section Background */
+#conocidos {
+  position: relative;
+  background: 
+    linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%),
+    radial-gradient(circle at 20% 80%, rgba(100, 255, 218, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(100, 255, 218, 0.03) 0%, transparent 50%);
+  overflow: hidden;
+}
+
+#conocidos::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(1px 1px at 25px 25px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 75px 75px, rgba(255, 255, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 125px 50px, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 150px 150px, 200px 200px, 100px 100px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+#conocidos::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Subtle border accent */
+#conocidos {
+  border-top: 1px solid rgba(100, 255, 218, 0.1);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* Enhanced section title for Known Meteorites */
+#conocidos .section-title {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 10px rgba(100, 255, 218, 0.3);
+}
+
+#conocidos .lead {
+  position: relative;
+  z-index: 2;
 }

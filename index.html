@@ -16,20 +16,31 @@
   <link rel="stylesheet" href="styles/conocidos.css">
   <link rel="stylesheet" href="styles/models.css">
   <link rel="stylesheet" href="styles/calendar.css">
+  <link rel="stylesheet" href="styles/mobile.css">
+  
+  <!-- Viewport meta tag for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
   <!-- HEADER -->
   
-  <header class="site-header" role="banner">
+  <header class="site-header header" role="banner">
     <!-- Logo and title -->
-    <div class="logo-container">
+    <div class="logo-container nav-container">
       <img src="assets/images/logo-CyB.png" alt="Celeste y Blanca Space Logo" class="logo">
       <h1 class="site-title">CELESTE & BLANCA SPACE</h1>
+      
+      <!-- Hamburger menu for mobile -->
+      <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
     <!-- Main navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar nav-menu" role="navigation" aria-label="Main navigation">
       <a href="#inicio" aria-label="Go to home section">Home</a>
       <a href="#proximos" aria-label="View upcoming meteorites">Upcoming Meteorites</a>
       <a href="#conocidos" aria-label="View known meteorites">Known Meteorites</a>
@@ -546,5 +557,8 @@
       audio.volume = 0.3; // 30% volume 
     });
   </script>
+
+  <!-- Add mobile script -->
+  <script src="scripts/mobile.js"></script>
 </body>
 </html>

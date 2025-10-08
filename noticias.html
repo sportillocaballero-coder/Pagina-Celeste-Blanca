@@ -15,21 +15,29 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/noticias.css">
   <link rel="stylesheet" href="styles/calendar.css">
+  <link rel="stylesheet" href="styles/mobile.css">
 </head>
 
 <body>
  
   <!-- HEADER-->
   
-  <header class="site-header" role="banner">
+  <header class="site-header header" role="banner">
     <!-- Logo and title  -->
-    <div class="logo-container">
+    <div class="logo-container nav-container">
       <img src="assets/images/logo-CyB.png" alt="Celeste y Blanca Space Logo" class="logo">
       <h1 class="site-title">CELESTE & BLANCA SPACE</h1>
+
+      <!-- Add hamburger menu -->
+      <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
 
     <!-- Main site navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <nav class="navbar nav-menu" role="navigation" aria-label="Main navigation">
       <a href="index.html" aria-label="Go to homepage">Home</a>
       <a href="index.html#proximos" aria-label="View upcoming meteorites">Upcoming Meteorites</a>
       <a href="index.html#conocidos" aria-label="View known meteorites">Known Meteorites</a>
@@ -187,6 +195,7 @@
   <!-- For languages-->
   <script src="scripts/langs/langcalendar.js"></script>
   <script src="scripts/langs/langnoticias.js"></script>
+  <script src="scripts/mobile.js"></script>
   
 </body> 
 </html>

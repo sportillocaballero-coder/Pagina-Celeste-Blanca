@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ARMET Project - Mobile optimized platform for monitoring asteroids and meteorites">
+    <title>Celeste & Blanca Space - Mobile</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Mobile-first CSS -->
+    <link rel="stylesheet" href="styles/mobile.css">
+    <link rel="stylesheet" href="styles/calendar.css">
+</head>
+
+<body>
+    <!-- Mobile Header with Hamburger Menu -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">CELESTE & BLANCA SPACE</div>
+            
+            <!-- Hamburger Menu Button -->
+            <div class="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="nav-menu" role="navigation">
+            <ul>
+                <li><a href="#inicio">🏠 Home</a></li>
+                <li><a href="#proximos">🌍 Upcoming Meteorites</a></li>
+                <li><a href="#conocidos">⭐ Known Meteorites</a></li>
+                <li><a href="noticias.html">📰 News</a></li>
+                <li><a href="#mitigacion">🛡️ Mitigation</a></li>
+                <li><a href="gamecard.html">🎮 GameCard</a></li>
+                <li><a href="#contacto">📧 Contact</a></li>
+                <li><a href="#" id="mobile-calendar-btn">🗓️ Calendar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-section">
+            <h1 class="hero-title">ARMET</h1>
+            <h2 class="hero-subtitle">Active Research for Meteor Targeting</h2>
+            <p class="hero-subtitle">
+                We are Celeste y Blanca Space. We provide a visual and educational tool 
+                to inform, raise awareness and prepare for possible threats from nearby asteroids.
+            </p>
+            <a href="#proximos" class="cta-button">Explore Meteorites</a>
+        </section>
+
+        <!-- Upcoming Meteorites Section -->
+        <section id="proximos" class="content-section">
+            <h2 class="section-title">🌍 Meteorites Near Earth</h2>
+            <p class="section-content">
+                Updated data of the closest celestial bodies detected during the present.
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3 class="card-title">☄️ 99942 Apophis</h3>
+                    <p><strong>Minimum distance:</strong> 31,600 km</p>
+                    <p><strong>Estimated size:</strong> ≈ 340 m diameter</p>
+                    <p><strong>Date of approach:</strong> 2029</p>
+                    <p class="alerta-baja">🟢 Impact risk: Very low</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">☄️ Asteroid 2024 YR₄</h3>
+                    <p><strong>Minimum distance:</strong> ≈ 384,000 km</p>
+                    <p><strong>Estimated size:</strong> ≈ 40–90 m diameter</p>
+                    <p><strong>Date of approach:</strong> 2032</p>
+                    <p class="alerta-baja">🟢 Impact risk: Very low</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Known Meteorites Section -->
+        <section id="conocidos" class="content-section">
+            <h2 class="section-title">⭐ Historically Known Meteorites</h2>
+            <p class="section-content">
+                List of the most relevant meteorites documented by international observatories.
+            </p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3 class="card-title">☄️ Chicxulub (Mexico)</h3>
+                    <p><strong>Age:</strong> ≈ 66 million years</p>
+                    <p><strong>Size:</strong> 10-15 km diameter</p>
+                    <p><strong>Impact:</strong> Mass extinction event</p>
+                    <p class="alerta-alta">🔴 Historical catastrophic event</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">🪨 Hoba (Namibia)</h3>
+                    <p><strong>Discovery:</strong> 1920</p>
+                    <p><strong>Weight:</strong> ≈ 60 tons</p>
+                    <p><strong>Type:</strong> Iron–nickel meteorite</p>
+                    <p class="alerta-baja">🟢 Largest meteorite found intact</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">☄️ Chelyabinsk (Russia)</h3>
+                    <p><strong>Event:</strong> February 15, 2013</p>
+                    <p><strong>Size:</strong> ≈ 20 meters diameter</p>
+                    <p><strong>Impact:</strong> Atmospheric explosion</p>
+                    <p class="alerta-media">🟡 Modern documented event</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mitigation Section -->
+        <section id="mitigacion" class="content-section">
+            <h2 class="section-title">🛡️ Planetary Defense</h2>
+            <div class="section-content">
+                <p>
+                    NASA leads global efforts to protect Earth from possible asteroid impacts 
+                    through the <strong>Planetary Defense Office</strong>.
+                </p>
+                
+                <h3>🎯 DART Mission Success</h3>
+                <p>
+                    In 2022, NASA's DART mission successfully demonstrated asteroid deflection 
+                    by impacting the asteroid Dimorphos and changing its orbit.
+                </p>
+                
+                <h3>🔭 Detection Methods</h3>
+                <ul>
+                    <li>Advanced telescope networks</li>
+                    <li>Radar tracking systems</li>
+                    <li>Space-based observations</li>
+                    <li>International collaboration</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="content-section">
+            <h2 class="section-title">📧 Contact</h2>
+            <div class="section-content">
+                <p>Want to collaborate with the project or send scientific information?</p>
+                <p>
+                    <strong>Email:</strong> 
+                    <a href="mailto:celesteyblancospace@gmail.com">celesteyblancospace@gmail.com</a>
+                </p>
+                <p><strong>ARMET Project</strong> - NASA Space Apps Challenge</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Celeste & Blanca Space - All rights reserved</p>
+        <p>ARMET Project - Asteroid and meteorite monitoring</p>
+    </footer>
+
+    <!-- Calendar Modal -->
+    <div id="calendar-modal" class="calendar-modal">
+        <div class="calendar-content">
+            <span id="close-calendar">&times;</span>
+            <h2>📅 Upcoming Astronomical Events</h2>
+
+            <div class="astronomy-events">
+                <h3>🌟 Upcoming Events</h3>
+                
+                <div class="event-item">
+                    <div class="event-date">December 14-15, 2025</div>
+                    <div class="event-desc">Geminids meteor shower</div>
+                    <div class="event-type">🌠 Meteor shower</div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date">April 13, 2029</div>
+                    <div class="event-desc">Apophis - Maximum approach</div>
+                    <div class="event-type">🔴 Critical NEO</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/mobile.js"></script>
+    <script src="scripts/calendar.js"></script>
+</body>
+</html>

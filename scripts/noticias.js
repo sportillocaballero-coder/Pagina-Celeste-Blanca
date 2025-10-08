@@ -11,6 +11,26 @@
 // NASA API key to access their services
 const API_KEY = "Ie3jrajsuZ1DfwEZdR91Se2lS5gazb1lvojY0NRe"; // ⚠️WARNING: put your real API key from api.nasa.gov
 
+// === Locales y traducciones dinámicas ===
+function getLocaleFromLang() {
+  const lang = localStorage.getItem("selectedLang") || "en-US";
+  return lang;
+}
+
+function T() {
+  // Accede a las cadenas traducidas desde langnoticias.js
+  return (typeof window.getNewsStrings === "function")
+    ? window.getNewsStrings()
+    : {
+        apod_prefix: "🛰️ Picture of the day:",
+        date_label: "Date:",
+        view_hd: "View in high resolution",
+        read_more: "Read more on NASA.gov",
+        apod_error: "Could not load picture of the day.",
+        recent_error: "Could not load recent news.",
+      };
+}
+
 // DOM elements where news will be displayed
 const noticiaDia = document.getElementById("noticia-dia");
 const newsContainer = document.getElementById("news-container");
@@ -39,22 +59,24 @@ async function cargarNoticiaDelDia() {
         </div>`;
     }
 
+    const t = T();
+
     noticiaDia.innerHTML = `
       <div class="news-card" style="display:flex;align-items:flex-start;gap:2rem;overflow:hidden;">
         <div style="flex-shrink:0;">
           ${mediaHTML}
         </div>
         <div style="flex:1;">
-          <h3>🛰️ Picture of the day: ${data.title}</h3>
+          <h3>${t.apod_prefix} ${data.title}</h3>
           <p>${data.explanation}</p>
-          <p><strong>Date:</strong> ${data.date}</p>
-          ${data.hdurl ? `<a href="${data.hdurl}" target="_blank">View in high resolution</a>` : ""}
+          <p><strong>${t.date_label}</strong> ${data.date}</p>
+          ${data.hdurl ? `<a href="${data.hdurl}" target="_blank">${t.view_hd}</a>` : ""}
         </div>
       </div>
     `;
   } catch (err) {
     console.error("APOD Error:", err);
-    noticiaDia.innerHTML = `<p>Could not load picture of the day.</p>`;
+    noticiaDia.innerHTML = `<p>${t.apod_error}</p>`;
   }
 }
 
@@ -73,23 +95,26 @@ async function cargarNoticiasRecientes() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
+    const locale = getLocaleFromLang();
+    const t = T();
     const noticias = data.items.slice(0, 5); // only first 5
+
     newsContainer.innerHTML = noticias.map(n => `
       <div class="news-card">
         <h3>🪐 ${n.title}</h3>
         ${n.enclosure?.link ? `<img src="${n.enclosure.link}" alt="${n.title}" style="width:60%;border-radius:10px;margin:1rem 0;">` : ""}
         <p>${n.description}</p>
-        <p><strong>Date:</strong> ${new Date(n.pubDate).toLocaleDateString("en-US")}</p>
-        <a href="${n.link}" target="_blank">Read more on NASA.gov</a>
+        <p><strong>${t.date_label}</strong> ${new Date(n.pubDate).toLocaleDateString(locale)}</p>
+        <a href="${n.link}" target="_blank">${t.read_more}</a>
       </div>
     `).join("");
 
   } catch (err) {
     console.error("Recent news error:", err);
-    newsContainer.innerHTML = `<p>Could not load recent news.</p>`;
+    const t = T();
+    newsContainer.innerHTML = `<p>${t.recent_error}</p>`;
   }
 }
-
 
 /* INITIALIZATION: EXECUTE BOTH FUNCTIONS WHEN PAGE LOADS   */
 

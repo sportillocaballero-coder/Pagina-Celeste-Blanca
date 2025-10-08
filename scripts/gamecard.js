@@ -8,38 +8,39 @@
    - Dynamic scoring (+100 / -50 / +200 combo)
    =========================================================== */
 
-function TG() {
-  return (typeof window.getGameStrings === "function")
-    ? window.getGameStrings()
-    : {
-        lives: "Lives", round: "Round", points: "Points",
-        select_defense: "Select your defense",
-        resolve_btn: "Resolve round", next_btn: "Next", reset_btn: "Reset",
-        success: "✅ Successful defense! Earth is safe.",
-        fail: "💥 Failed impact. Earth suffers damage.",
-        game_over: "☠️ Game over — Earth was impacted.",
-        victory: "🌎 Victory! You defended Earth for 5 rounds.",
-        size: "Size", speed: "Speed", type: "Type", km_s: "km/s",
-        defenses: {
-          dart: { name: "DART", text: "Effective against S/M." },
-          neo:  { name: "NEO Surveyor", text: "Reduces effective size." },
-          g1033:{ name: "1033 Gravitational", text: "Effective against M/L if v ≤ 20." },
-          collab:{ name: "International Collaboration", text: "Allows playing 2 defenses." }
-        },
-        type_map: {}
-      };
-}
-
-// Traductor de tipo de meteorito
-function translateMeteorType(type) {
-  const map = TG().type_map || {};
-  return map[type] || type;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start-btn");
   const gameArea = document.querySelector(".game-screen");
 
+   // ==================== GAME LANGUAGE ====================
+  /**
+   * Returns current translation set from langame.js
+   * @returns {Object} Object with translated strings
+   */
+  const T = () => {
+    if (typeof window.getGameStrings === "function") {
+      return window.getGameStrings();
+    } else {
+      console.warn("⚠️ Language module not loaded (langame.js missing). Using default EN.");
+      return {
+        lives: "Lives",
+        round: "Round",
+        points: "Points",
+        select_defense: "Select your defense",
+        resolve_btn: "Resolve round",
+        next_btn: "Next",
+        reset_btn: "Reset",
+        success: "✅ Successful defense! Earth is safe.",
+        fail: "💥 Failed impact. Earth suffers damage.",
+        game_over: "☠️ Game over — Earth was impacted.",
+        victory: "🌎 Victory! You defended Earth for 5 rounds.",
+        size: "Size",
+        speed: "Speed",
+        type: "Type",
+        km_s: "km/s",
+      };
+    }
+  };
   // ==================== GAME AUDIO ====================
   let bgAudio = null;
 
@@ -119,7 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
    * @returns {void} Returns no value, modifies the innerHTML of gameArea and calls other rendering functions
    */
   const renderBoard = () => {
-    const t = TG();
+    const t = T(); // Get current translations
+    
     gameArea.innerHTML = `
       <div class="status-bar">
         <p>🌍 ${t.lives}: <span id="hp">${"❤".repeat(earthHP)}${"♡".repeat(3 - earthHP)}</span></p>
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${meteor.img || "/assets/cards/meteor_placeholder.png"}" alt="${meteor.name}">
           <div class="card-info">
             <h3>${meteor.name}</h3>
-            <p>${translateMeteorType(meteor.type)}</p>
+            <p>${meteor.type}</p>
             <p>${t.size}: ${meteor.size}</p>
             <p>${t.speed}: ${meteor.speed} ${t.km_s}</p>
           </div>
@@ -160,19 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
    * @returns {void} Returns no value, creates DOM elements and adds them to the defense grid
    */
   const renderDefenses = () => {
-    const t = TG();
-    const defsT = t.defenses;
-    const nameById = { dart: defsT.dart.name, neo: defsT.neo.name, "1033": defsT.g1033.name, collab: defsT.collab.name };
-    const textById = { dart: defsT.dart.text, neo: defsT.neo.text, "1033": defsT.g1033.text, collab: defsT.collab.text };
-
-// ...
-cardEl.innerHTML = `
-  <img src="${card.img || "/assets/cards/card_placeholder.png"}" alt="${nameById[card.id] || card.name}">
-  <div class="card-info">
-    <h4>${nameById[card.id] || card.name}</h4>
-    <p>${textById[card.id] || card.text}</p>
-  </div>
-`;
     const grid = document.querySelector(".defense-grid");
     grid.innerHTML = "";
     defenses.forEach((card) => {
@@ -246,26 +235,9 @@ cardEl.innerHTML = `
    * @returns {void} Returns no value, but modifies game state (score, lives, etc.)
    */
   const resolveRound = () => {
-
-    const t = TG();
-    // ...
-    if (success) {
-      resultText.textContent = t.success;
-      // ...
-    } else {
-      resultText.textContent = t.fail;
-      // ...
-    }
-    // ...
-    if (earthHP <= 0) {
-      resultText.textContent = t.game_over;
-      // ...
-    } else if (wins >= 5) {
-      resultText.textContent = t.victory;
-      // ...
-    }
     if (resolved || selected.length === 0) return;
 
+    const t = T(); // Get current translations
     const resultText = document.getElementById("result-text");
     const usingSurvey = selected.includes("neo");
     const usingDart = selected.includes("dart");
@@ -286,12 +258,12 @@ cardEl.innerHTML = `
 
     // Result - CORRECTED VALIDATION
     if (success) {
-      resultText.textContent = "✅ Successful defense! Earth is safe.";
+      resultText.textContent = t.success;
       wins++;
       score += 100 + (comboBonus ? 200 : 0);
       animateSuccess();
     } else {
-      resultText.textContent = "💥 Failed impact. Earth suffers damage.";
+      resultText.textContent = t.fail;
       earthHP = Math.max(0, earthHP - 1);
       score = Math.max(0, score - 50);
       animateFail();
@@ -353,35 +325,18 @@ cardEl.innerHTML = `
    * @returns {void} Returns no value, modifies DOM elements and stops audio according to result
    */
   const checkGameOver = () => {
-
-    const t = TG();
-    // ...
-    if (success) {
-      resultText.textContent = t.success;
-      // ...
-    } else {
-      resultText.textContent = t.fail;
-      // ...
-    }
-    // ...
-    if (earthHP <= 0) {
-      resultText.textContent = t.game_over;
-      // ...
-    } else if (wins >= 5) {
-      resultText.textContent = t.victory;
-      // ...
-    }
+    const t = T(); // Get current translations
     const resetBtn = document.getElementById("reset-btn");
     const nextBtn = document.getElementById("next-btn");
     const resultText = document.getElementById("result-text");
 
     if (earthHP <= 0) {
-      resultText.textContent = "☠️ Game over — Earth was impacted.";
+      resultText.textContent = t.game_over;
       nextBtn.classList.add("disabled");
       resetBtn.classList.remove("hidden");
       stopAudio(); // Stop music when losing
     } else if (wins >= 5) {
-      resultText.textContent = "🌎 Victory! You defended Earth for 5 rounds.";
+      resultText.textContent = t.victory;
       nextBtn.classList.add("disabled");
       resetBtn.classList.remove("hidden");
       stopAudio(); // Stop music when winning
@@ -427,5 +382,13 @@ cardEl.innerHTML = `
     meteor = randomMeteor();
     startBtn.style.display = "none";
     renderBoard();
+  });
+
+  // ==================== LANGUAGE CHANGE LISTENER ====================
+  window.addEventListener('languageChanged', () => {
+    // Si el juego está activo, re-renderizar el tablero con el nuevo idioma
+    if (document.querySelector(".game-screen .status-bar")) {
+      renderBoard();
+    }
   });
 });

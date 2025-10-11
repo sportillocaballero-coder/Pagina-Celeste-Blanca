@@ -21,6 +21,7 @@ body {
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem;
+    min-height: 70px;
 }
 
 .nav-container {
@@ -29,12 +30,41 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #64ffda;
+    flex-shrink: 0;
+}
+
+/* Language Switcher */
+.lang-switcher {
+    display: none; /* Hidden on mobile by default */
+    align-items: center;
+    margin-right: 1rem;
+}
+
+#langSelect {
+    background: rgba(15, 17, 21, 0.9);
+    color: #eaeaea;
+    border: 1px solid rgba(31, 42, 68, 0.8);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.15) inset;
+    transition: all 0.3s ease;
+}
+
+#langSelect:hover {
+    border-color: #1e90ff;
+    background: rgba(15, 17, 21, 1);
 }
 
 /* Hamburger Menu */
@@ -342,28 +372,50 @@ img {
 }
 
 /* Responsive Design */
+/* Tablets (768px and up) */
 @media (min-width: 768px) {
+    .header {
+        padding: 1.2rem 2rem;
+        min-height: 80px;
+    }
+    
+    .nav-container {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 1.4rem;
+        justify-self: start;
+    }
+    
+    .lang-switcher {
+        display: flex; /* Show language switcher on tablets */
+        justify-self: center;
+    }
+    
     .hamburger {
-        display: none;
+        justify-self: end;
     }
     
     .nav-menu {
-        position: static;
-        flex-direction: row;
-        height: auto;
-        background: none;
-        padding: 0;
-        width: auto;
-        right: 0;
+        top: 80px;
+        height: calc(100vh - 80px);
     }
     
     .nav-menu li {
-        margin: 0 1rem;
+        margin: 1.2rem 0;
     }
     
     .nav-menu a {
-        border-bottom: none;
-        padding: 0.5rem 0;
+        font-size: 1.1rem;
+        padding: 1.2rem 0;
+    }
+    
+    .main-content {
+        margin-top: 80px;
     }
     
     .hero-title {
@@ -372,16 +424,95 @@ img {
     
     .cards-grid {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
     }
 }
 
+/* Large Tablets / Small Laptops (1024px and up) */
 @media (min-width: 1024px) {
+    .header {
+        padding: 1.5rem 3rem;
+        min-height: 90px;
+    }
+    
+    .nav-container {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    .hamburger {
+        display: none; /* Hide hamburger on desktop */
+    }
+    
+    .nav-menu {
+        position: static;
+        display: flex !important;
+        flex-direction: row;
+        height: auto;
+        background: none;
+        padding: 0;
+        width: auto;
+        right: 0;
+        transform: none;
+        justify-self: end;
+    }
+    
+    .nav-menu ul {
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-menu li {
+        margin: 0;
+        border-bottom: none;
+    }
+    
+    .nav-menu a {
+        border-bottom: none;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+        background: rgba(100, 255, 218, 0.15);
+        color: #64ffda;
+    }
+    
     .main-content {
         max-width: 1200px;
-        margin: 70px auto 0;
+        margin: 90px auto 0;
+        padding: 2rem;
     }
     
     .hero-title {
         font-size: 4rem;
+    }
+    
+    .content-section {
+        padding: 3rem;
+    }
+}
+
+/* Desktop (1200px and up) */
+@media (min-width: 1200px) {
+    .header {
+        padding: 1.5rem 4rem;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+    }
+    
+    .nav-menu a {
+        font-size: 1rem;
+        padding: 1rem 1.5rem;
     }
 }

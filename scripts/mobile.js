@@ -180,10 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileCalendarBtn && calendarModal) {
         mobileCalendarBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            calendarModal.style.display = 'flex'; // Changed to flex for better centering
+            calendarModal.style.display = 'block';
             document.body.style.overflow = 'hidden';
             closeMenu(); // Close hamburger menu when opening calendar
-            vibrate([50]); // Add haptic feedback
         });
     }
 
@@ -191,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
         closeCalendar.addEventListener('click', function() {
             calendarModal.style.display = 'none';
             document.body.style.overflow = 'auto';
-            vibrate([30]);
         });
     }
 
@@ -281,81 +279,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('online', updateNetworkStatus);
     window.addEventListener('offline', updateNetworkStatus);
     updateNetworkStatus(); // Check initial status
-
-    // Language Switcher functionality
-    const langSelect = document.getElementById('langSelect');
-    if (langSelect) {
-        langSelect.addEventListener('change', function(e) {
-            const selectedLang = e.target.value;
-            
-            // Add visual feedback
-            vibrate([30]);
-            
-            // Here you can add actual language switching logic
-            console.log('Language switched to:', selectedLang);
-            
-            // Example: You could redirect to different language versions
-            // or dynamically change text content
-            
-            // For now, just show a notification
-            showLanguageNotification(selectedLang);
-        });
-    }
-
-    // Language notification function
-    function showLanguageNotification(lang) {
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            background: linear-gradient(45deg, #64ffda, #4fc3f7);
-            color: #0f0f23;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            z-index: 1001;
-            animation: slideIn 0.3s ease;
-        `;
-        
-        const langNames = {
-            'en': 'English',
-            'es': 'Español'
-        };
-        
-        notification.textContent = `Language: ${langNames[lang] || lang}`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease forwards';
-            setTimeout(() => notification.remove(), 300);
-        }, 2000);
-    }
-
-    // Add animation styles for notifications
-    const notificationStyles = document.createElement('style');
-    notificationStyles.textContent = `
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(notificationStyles);
 });

@@ -180,9 +180,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileCalendarBtn && calendarModal) {
         mobileCalendarBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            calendarModal.style.display = 'block';
+            calendarModal.style.display = 'flex'; // Changed to flex for better centering
             document.body.style.overflow = 'hidden';
             closeMenu(); // Close hamburger menu when opening calendar
+            vibrate([50]); // Add haptic feedback
         });
     }
 
@@ -190,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         closeCalendar.addEventListener('click', function() {
             calendarModal.style.display = 'none';
             document.body.style.overflow = 'auto';
+            vibrate([30]);
         });
     }
 
